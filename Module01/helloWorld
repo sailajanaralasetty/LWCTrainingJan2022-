@@ -1,5 +1,0 @@
-<template>
-    <div style="color:blue">Hello World</div>
-    <div style="color:red">This is my first Lightning Web Component</div>
-    <div style="color:green">I'm so excited to be part of this Bootcamp</div>
-</template>
