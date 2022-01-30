@@ -1,0 +1,25 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <div class="slds-card__body_inner">
+            <lightning-layout>
+                <lightning-layout-item size="5">
+                    <div class="heading">Permanent Address</div>
+                    Enter permanent address as govt Id Proof
+                    <lightning-input type="text" label="Address Line 1" name="permaddrAddline1"  onchange={handlepermaddrchange}></lightning-input>  
+                    <lightning-input type="text" label="Address Line 2" name="permaddrAddline2" onchange={handlepermaddrchange}></lightning-input>
+                    <lightning-input type="text" label="Landmark" name="permaddrLandmark" onchange={handlepermaddrchange}></lightning-input>
+                    <lightning-input type="text" label="Zip Code" name="permaddrZip" onchange={handlepermaddrchange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="2"></lightning-layout-item>
+                <lightning-layout-item size="5">
+                    <div class="heading">Current Address</div>                    
+                    <lightning-input type="checkbox" label="Same as permanent address" onchange={setCurrAddrtoPermAddr}></lightning-input>
+                    <lightning-input type="text" label="Address Line 1" value={curraddr.addr1} name="curraddrAddline1"></lightning-input>  
+                    <lightning-input type="text" label="Address Line 21" value={curraddr.addr2} name="curraddrAddline2"></lightning-input>
+                    <lightning-input type="text" label="Landmark" value={curraddr.landmark} name="curraddrLandmark"></lightning-input>
+                    <lightning-input type="text" label="Zip Code" value={curraddr.zip} name="curraddrZip"></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div> 
+    </div>
+</template>
