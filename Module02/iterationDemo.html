@@ -1,0 +1,53 @@
+<template>
+    <div>
+        <lightning-layout>
+            <lightning-layout-item size="5">
+                <lightning-card>
+                    <h4 slot="title">
+                        <lightning-icon icon-name="standard:contact" size="small"></lightning-icon>
+                        &nbsp;&nbsp;&nbsp;For:Each Demo
+                    </h4>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <th>Index</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </thead>
+                        <tbody>
+                        <template for:each={contacts} for:item="contact" for:index="index">
+                            <tr key={contact.Id} class="slds-border_bottom">
+                                <td>{index}</td>
+                                <td>{contact.Id}</td>
+                                <td>{contact.Name}</td>
+                                <td>{contact.Email}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                    </table>
+                </lightning-card>
+            </lightning-layout-item>
+            <lightning-layout-item size="2">
+
+            </lightning-layout-item>
+            <lightning-layout-item size="5">
+                <lightning-card>
+                    
+                    <h4 slot="title">
+                        <lightning-icon icon-name="standard:contact" size="small"></lightning-icon>
+                        &nbsp;&nbsp;&nbsp;Iterator Demo
+                    </h4>
+                    <ul class="slds-m-around_medium">
+                <template iterator:it={contacts}>
+                    <li key={it.value.Id} class="slds-m-bottom_medium">
+                        <div if:true={it.first} class="list-first"></div>
+                        {it.value.Name} - {it.value.Email}
+                        <div if:true={it.last} class="list-last"></div>
+                    </li>
+                </template>
+            </ul>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>
