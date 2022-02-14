@@ -1,0 +1,25 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <lightning-icon icon-name="standard:hierarchy"></lightning-icon>Parent
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_4-of-12">
+                Child One: {childOneSelected}
+            </div>
+            <div class="slds-col slds-size_4-of-12">
+                Child Two: {childTwoSelected}
+            </div>
+            <div class="slds-col slds-size_4-of-12">
+                Child Three: {childThreeSelected}
+            </div>
+            <div class="slds-col slds-size_4-of-12">
+                <c-child-one onchildonebtnclick={setChildOneText}></c-child-one>
+            </div>
+            <div class="slds-col slds-size_4-of-12">
+                <c-child-two onchildtwobtnclick={setChildTwoText}></c-child-two>
+            </div>
+            <div class="slds-col slds-size_4-of-12">
+                <c-child-three onchildthreebtnclick={setChildThreeText}></c-child-three>
+            </div>
+        </div>
+    </div>
+</template>

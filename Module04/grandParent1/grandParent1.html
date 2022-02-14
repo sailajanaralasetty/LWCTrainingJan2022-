@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-box slds-theme_default slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12">
+            <lightning-icon icon-name="standard:contact_list"></lightning-icon>Grand Parent
+        </div>
+        <div class="slds-col slds-size_6-of-12 slds-text-align_left">
+          {cnt}  of 3 Children selected  
+        </div>
+        <div class="slds-col slds-size_6-of-12 slds-text-align_right">
+            <lightning-button variant="brand" label="Reset All" onclick={resetAll}></lightning-button>
+        </div>
+        <div class="slds-col slds-size_12-of-12">
+            <c-parent1 onsetnumberongrandparent={setCount}></c-parent1>
+        </div>
+    </div>
+</template>
