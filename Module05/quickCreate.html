@@ -1,0 +1,64 @@
+<template>
+    <div class="slds-grid slds-wrap slds-box slds-theme_default">
+        <div class="slds-col slds-size_5-of-12 slds-box">
+            <lightning-icon icon-name="standard:account"></lightning-icon> Account Quick Create
+            <lightning-button type="neutral" label="Show All Account Fields" onclick={btnshowAllAccFldsclicked} class="slds-float_right"></lightning-button>
+            <template if:true={showAllAccFlds}>
+                <lightning-record-edit-form object-api-name={objApiName} onsuccess={clearAccField}>
+                    <lightning-input-field field-name="Name" value="" data-name="accFields"></lightning-input-field>
+                    <div class="slds-align_absolute-center">
+                            <lightning-button variant="neutral" label="Cancel" class="slds-m-around_small" onclick={clearAccField}></lightning-button>
+                            <lightning-button type="submit" variant="brand" label="Save" class="slds-m-around_small"></lightning-button>
+                    </div>
+                </lightning-record-edit-form>
+            </template>
+        </div>
+        <div class="slds-col slds-size_2-of-12">
+
+        </div>
+        <div class="slds-col slds-size_5-of-12 slds-box">
+                <lightning-icon icon-name="standard:opportunity"></lightning-icon> Opportunity Quick Create
+                <lightning-button type="neutral" label = "Show All Opportunity Fields"  onclick={btnShowAllOptyFldsClicked} class="slds-float_right"></lightning-button>
+                <template if:true={showAllOptyFlds}>
+                    <lightning-record-edit-form object-api-name="Opportunity" onsuccess={clearOptyFields}>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12">
+                                <lightning-input-field field-name="Name" value="" data-name="optyFields"></lightning-input-field>
+                                <lightning-input-field field-name="StageName" value="" data-name="optyFields"></lightning-input-field>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12">
+                                <lightning-input-field field-name="CloseDate" value="" data-name="optyFields"></lightning-input-field>
+                                <lightning-input-field field-name="AccountId" value="" data-name="optyFields"></lightning-input-field>
+                            </div>
+                        </div>
+                        <div class="slds-align_absolute-center">
+                            <lightning-button variant="neutral" label="Cancel" class="slds-m-around_small" onclick={clearOptyFields}></lightning-button>
+                            <lightning-button type="submit" variant="brand" label="Save" class="slds-m-around_small"></lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
+                </template>
+        </div>
+        <div class="slds-col slds-size_6-of-12 slds-box">
+            <lightning-icon icon-name="standard:account"></lightning-icon>Contact Quick Create
+            <lightning-button variant="neutral" label="Show All Contact Fields" class="slds-float_right" onclick={btnShowAllConsClicked}></lightning-button>
+            <template if:true={showAllConFlds}>
+            <lightning-record-edit-form object-api-name="Contact" onsuccess={clearConFields}>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_6-of-12">
+                        <lightning-input-field field-name="Salutation" value="" data-name="conFields"></lightning-input-field>
+                        <lightning-input-field field-name="FirstName" value="" data-name="conFields"></lightning-input-field>
+                        <lightning-input-field field-name="LastName" value="" data-name="conFields"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_6-of-12">
+                        <lightning-input-field field-name="AccountId" value="" data-name="conFields"></lightning-input-field>
+                    </div>
+                </div>                
+                <div class="slds-align_absolute-center">
+                    <lightning-button variant="neutral" label="Cancel" class="slds-m-around_small" onclick={clearConFields}></lightning-button>
+                    <lightning-button type="submit" variant="brand" label="Save" class="slds-m-around_small"></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+            </template>
+        </div>
+    </div>
+</template>
