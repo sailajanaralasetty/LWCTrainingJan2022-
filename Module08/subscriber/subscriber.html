@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <lightning-icon icon-name="standard:contact"></lightning-icon>Contact Detail Subscription
+        <div class="slds-p-around_small slds-border_top slds-border_bottom">
+            <lightning-button label="Subscribe" variant="brand" onclick={subscribe} class="slds-float_left"></lightning-button>
+            <lightning-button label="Unsubscribe" variant="destrtuctive" onclick={unSubscribe} class="slds-align_absolute-center"></lightning-button>
+            <lightning-button label="Clear" variant="brand" onclick={clear} class="slds-float_right"></lightning-button>
+        </div>
+        <div>
+            Message Received:{contactAdded}<br/>
+            <template for:each={conList} for:item="con">
+                <p key={con}>{con}</p>
+            </template>
+        </div>
+    </div>
+</template>
