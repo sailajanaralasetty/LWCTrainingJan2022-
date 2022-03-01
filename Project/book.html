@@ -1,0 +1,153 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <template if:true={bookDetails.data}>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_6-of-12">
+                <lightning-icon icon-name="utility:description" class="slds-float_left"></lightning-icon>Book Details:<b>{bookDetails.data.Title__c}</b>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+                <lightning-button label="Update Book" variant="neutral" class="slds-float_right slds-m-bottom_medium" onclick={openModal}></lightning-button>
+            </div>
+            <div class="slds-col slds-size_3-of-12">
+                <img src={bookDetails.data.image_url__c} style="height:180px;width:120px!important;max-width:none;">
+            </div>
+            <div class="slds-col slds-size_9-of-12 slds-p-left_xx-large">
+                <p><b>Author: </b>{bookDetails.data.Author__c}</p>
+                <p><b>Publisher: </b>{bookDetails.data.Publisher__c}</p>
+                <p><b>ISBN13: </b>{bookDetails.data.ISBN13__c}</p>
+                <p><b>ISBN: </b>{bookDetails.data.ISBN__c}</p>
+                <p><b>Year Published: </b>{bookDetails.data.Year_Published__c}</p>
+                <p><b>Binding: </b>{bookDetails.data.Binding__c}</p>
+                <p><b>Num of pages: </b>{bookDetails.data.Number_of_Pages__c}</p>
+                <p><b>Goodreads Book Id: </b>{bookDetails.data.Goodreads_Id__c}</p>
+                <p><b>Average Rating: </b>{bookDetails.data.Average_Rating__c}</p>
+            </div>
+            <div class="slds-col slds-size_12-of-12">
+                <lightning-icon icon-name="action:delete" class="slds-float_right" onclick={openDelModal}></lightning-icon>
+            </div>
+    </div>
+    </template>
+    </div>
+    <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Edit {bookId}</h2>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_6-of-12">
+                                Library Book Id
+                                <p>{bookDetails.data.Name}</p>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12">
+                                Owner
+                                <p>{bookDetails.data.Owner.Name}</p>
+                                <!--<lightning-input value={bookDetails.data.Owner.Name} read-only="true" label="Owner"></lightning-input>-->
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Goodreads_Id__c} label="Goodreads Id" data-field="Goodreads_Id__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Title__c} label="Title" data-field="Title__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Author__c} label="Author" data-field="Author__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.ISBN__c} label="ISBN" data-field="ISBN__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.ISBN13__c} label="ISBN13" data-field="ISBN13__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.image_url__c} label="Image URL" data-field="image_url__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Average_Rating__c} label="Average Rating" data-field="Average_Rating__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Publisher__c} label="Publisher" data-field="Publisher__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Binding__c} label="Binding" data-field="Binding__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Number_of_Pages__c} label="Number of Pages" data-field="Number_of_Pages__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <lightning-input value={bookDetails.data.Year_Published__c} label="Year Published" data-field="Year_Published__c"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12">
+                                Created By
+                                <p>{bookDetails.data.CreatedBy.Name} {bookDetails.data.LastModifiedDate}</p>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12">
+                                Last Modified By
+                                <p>{bookDetails.data.LastModifiedBy.Name}, {bookDetails.data.CreatedDate}</p>
+                                <!--<lightning-input value={bookDetails.data.Owner.Name} read-only="true" label="Owner"></lightning-input>-->
+                            </div>
+                        <!--<div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="Title__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="Author__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="ISBN__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                            <lightning-input-field field-name="ISBN13__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="image_url__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="Average_Rating__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="Publisher__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="Binding__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="Number_of_Pages__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_12-of-12">
+                        <lightning-input-field field-name="Year_Published__c"></lightning-input-field></div>
+                        <div class="slds-col slds-size_6-of-12">
+                            <lightning-output-field field-name="CreatedById"></lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12">
+                                <lightning-output-field field-name="LastModifiedById"></lightning-output-field>
+                                </div>-->
+                        </div>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Cancel"></lightning-button>
+                    <lightning-button variant="neutral" label="Save & New"></lightning-button>
+                    <lightning-button variant="brand" label="Save" onclick={updateBook}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={isDelModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC body starts here -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        Book - {bookId} shall be deleted from Library. Proceed?
+                    </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="OK" onclick={deleteBook}></lightning-button>
+                    <lightning-button variant="neutral" label="Cancel" onclick={closeDelModal}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

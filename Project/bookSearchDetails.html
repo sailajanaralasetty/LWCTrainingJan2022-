@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-box slds-theme_default">    
+        <div class="slds-m-around_small">
+            <lightning-icon icon-name="standard:search"></lightning-icon>Search books in Library:
+            <lightning-input type="text" value={searchText} placeholder="Enter Title to search..." onchange={changeBookSearchResults}></lightning-input>  
+        </div>      
+    </div>
+    <div class="slds-box slds-theme_default">
+        Displaying Results: {searchCnt}<br/>
+        <div class="slds-grid slds-wrap slds-m-around_xxx-small">
+            <template if:true={bookResults}>
+                <template for:each={bookResults} for:item="book">
+                    <div class="slds-col slds-size_3-of-12" key={book.Id} onclick={selectedBook} data-id={book.Id}>
+                        <p><b>{book.Title__c}</b></p>
+                        <p><img src={book.image_url__c}></p>
+                        <p><b>Author:</b>{book.Author__c}</p>
+                        <p>Publisher: {book.Publisher__c}</p>
+                        <p>ISBN13: {book.ISBN13__c}</p>
+                        <p>Year Published:{book.Year_Published__c} </p>
+                        <p>Average Rating: {book.Average_Rating__c}</p>
+                        <br/>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>
